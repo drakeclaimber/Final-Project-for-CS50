@@ -24,7 +24,54 @@
 		<title>FinSight</title>
 	</head>
 	<body>
-		<h1>Welcome to My Web Page</h1>
-		<p>This is a basic HTML page.</p>
+		<!--Навигационная панель с классами от Bootstrap-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">FinSight</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <!--Если пользователь зарегестрирован-->
+          {% if session["user_id"] %}
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/AddTransaction">Add transaction</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/EditTransaction">Edit transaction</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/DeleteTransaction">Delete transaction</a>
+            </li>
+            <ul class="navbar-nav ms-auto mt-2">
+              <li class="nav-item">
+                 <a class="nav-link" href="/logout">Log Out</a>
+              </li>
+              <!--Если нет-->
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Log In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Register</a>
+            </li>
+          {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
 	</body>
 </html>
