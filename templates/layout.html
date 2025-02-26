@@ -72,6 +72,21 @@
         </div>
       </div>
     </nav>
+    <!--Отображение ошибок-->
+    {% if get_flashed_messages() %}
+    <div class="container mt-3">
+      <div class="alert alert-danger" role="alert">
+        {% for message in get_flashed_messages() %}
+        {{ message }}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!--Main block-->
+    <main class="container py-5 text-center">
+      {% block content %}{% endblock %}\
+    </main>
     
 	</body>
 </html>
