@@ -8,8 +8,20 @@ from werkzeug.security import check_password_hash, generate_password_hash
 # Создаём переменную, через которую будем работать с серверной частью сайта
 app = Flask(__name__)
 
+app.config["SESSION PERMANENT"] = False
+app.config["SESSION TYPE"] = "filesystem"
+Session(app)
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+@app.after_request
+def after_request(response):
+    """Ensure responses aren't cached"""
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
 
 # TODO Сделать Dashboard
 @app.route('/dashboard')
@@ -22,10 +34,21 @@ def dashboard():
 def register():
     return render_template("register.html")
 
+# TODO Сделать Форму для login
 @app.route('/login')
 def login():
     return render_template('login.html')
 
+
+@app.route('/logout')
+def logout():
+    #Очистить сессию
+    session.clear()
+    #Вернуться на Log in
+    redirect('/login')
+
+# TODO Сделать Форму для индекс
 @app.route('/')
+@login_required
 def index():
     return render_template('index.html')
