@@ -14,7 +14,7 @@ if __name__ == '__main__':
 # TODO Сделать Dashboard
 @app.route('/dashboard')
 @login_required
-def index():
+def dashboard():
     return render_template('dashboard.html')
 
 # TODO Сделать Форму для регистрации 
@@ -26,3 +26,6 @@ def register():
 def login():
     return render_template('login.html')
 
+@app.route('/')
+def index():
+    return render_template('index.html')
