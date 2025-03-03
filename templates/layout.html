@@ -25,77 +25,88 @@
 	</head>
 	<body>
 		<!--Навигационная панель с классами от Bootstrap-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">FinSight</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <!--Если пользователь зарегестрирован-->
-          {% if session["user_id"] %}
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/dashboard">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/AddTransaction">Add transaction</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/EditTransaction">Edit transaction</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/DeleteTransaction">Delete transaction</a>
-            </li>
-            <ul class="navbar-nav ms-auto mt-2">
-              <li class="nav-item">
-                 <a class="nav-link" href="/logout">Log Out</a>
-              </li>
-              <!--Если нет-->
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Log In</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/register">Register</a>
-            </li>
-          {% endif %}
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!--Отображение ошибок-->
-    {% if get_flashed_messages() %}
-    <div class="container mt-3">
-      <div class="alert alert-danger" role="alert">
-        {% for message in get_flashed_messages() %}
-        {{ message }}
-        {% endfor %}
-      </div>
-    </div>
-    {% endif %}
+		<nav class="navbar navbar-expand-lg navbar-light bg-success-subtle">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/">FinSight</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarNav"
+					aria-controls="navbarNav"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						{% if session["user_id"] %}
+						<li class="nav-item">
+							<a class="nav-link" href="/dashboard">Dashboard</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/AddTransaction">Add transaction</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/EditTransaction">Edit transaction</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/DeleteTransaction"
+								>Delete transaction</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/logout">Log Out</a>
+						</li>
+						{% else %}
+						<li class="nav-item">
+							<a class="nav-link" href="/login">Log In</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/register">Register</a>
+						</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!--Отображение ошибок-->
+		{% if get_flashed_messages() %}
+		<div class="container mt-3">
+			<div class="alert alert-danger" role="alert">
+				{% for message in get_flashed_messages() %} {{ message }} {% endfor %}
+			</div>
+		</div>
+		{% endif %}
 
-    <!--Main block-->
-    <main class="container py-5 text-center">
-      {% block content %}{% endblock %}
-    </main>
+		<!--Main block-->
+		<main class="container py-5 text-center">
+			{% block content %}{% endblock %}
+		</main>
 
-    <footer>
-      <div class="container mt-3">
-        <div class="row">
-
-        </div>
-      </div>
-      
-    </footer>
-    
+		<!--Footer-->
+		<footer>
+			<div class="container">
+				<div class="row justify-content-between align-items-center">
+					<div
+						class="col-lg-6 col-md-12 mb-4 mb-md-0 text-center text-lg-start"
+					>
+						<p class="mb-0">© 2025 FinSight</p>
+					</div>
+					<div class="col-lg-6 col-md-12 text-center text-lg-end">
+						<ul class="list-inline mb-0">
+							<li>
+								<a
+									href="https://github.com/drakeclaimber/Final-Project-for-CS50"
+									class="text-dark"
+									>GitHub</a
+								>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>
