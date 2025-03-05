@@ -1,5 +1,6 @@
 # Здесь будет основная работа с приложением, где будут выполняться методы POST и GET
 import os
+import sqlite3
 from helper import login_required
 from flask import Flask, request, render_template, redirect, session
 from flask_session import Session
@@ -11,6 +12,10 @@ app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
+
+def get_db():
+    db = sqlite3.connect('finance.db')
+    return db
 
 if __name__ == '__main__':
     app.run(debug=True)
