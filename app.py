@@ -23,11 +23,6 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-# TODO Сделать Dashboard
-@app.route('/dashboard')
-@login_required
-def dashboard():
-    return render_template('dashboard.html')
 
 # TODO Сделать Форму для регистрации 
 @app.route('/register')
@@ -52,3 +47,25 @@ def logout():
 @login_required
 def index():
     return render_template('index.html')
+
+# TODO Сделать Форму добавления транзакций
+"""Здесь мы будем учитывать как расходы, так и доходы"""
+@app.route('/add transaction')
+def add():
+    return render_template('add_trans')
+
+# Для изменения транзакций 
+"""Здесь мы будем учитывать как расходы, так и доходы"""
+@app.route('/edit transaction')
+def edit():
+    return render_template('edit_trans')
+
+# для удаления транзакций
+"""Здесь мы будем учитывать как расходы, так и доходы"""
+@app.route('/delete transaction')
+def delete():
+    return render_template('delete_trans')
+
+@app.route('/history')
+def history():
+    return render_template('/history.html')
